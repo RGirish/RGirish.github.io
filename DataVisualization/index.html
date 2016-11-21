@@ -1,148 +1,216 @@
-<!--
-
-Copyright 2015 Girish Raman
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
--->
-
-
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-
-	<link rel="shortcut icon" href="img/asd.ico" type="image/x-icon">
-	<link rel="icon" href="img/asd.ico" type="image/x-icon">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>About Girish Raman</title>
-
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
-    <link href="css/freelancer_e.css" rel="stylesheet">
-    <link href="css/freelancer_w.css" rel="stylesheet">
-    <link href="css/freelancer_v.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <title>Chord Diagram</title>
+    <style>
+    @import url(style.css);
+    #circle circle {
+        fill: none;
+        pointer-events: all;
+    }
+    
+    .group path {
+        fill-opacity: 1;
+    }
+    
+    path.chord {
+        stroke: #aaa;
+        stroke-width: .25px;
+    }
+    
+    #circle:hover path.fade {
+        display: none;
+    }
+    
+    #container {
+        width: 100%;
+    }
+    
+    #left {
+        float: left;
+        width: 550px;
+        height: 550px;
+        background: #f7f7f7
+    }
+    
+    #right {
+        float: right;
+        width: 550px;
+        height: 550px;
+        background: #f7f7f7
+    }
+    </style>
 </head>
 
-<body id="page-top" class="index">
-
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">GIRISH RAMAN</span>
-                        <hr class="star-light">
-                        <span class="skills">Computer Science Masters Student - Android Developer</span>
-                        <hr class="star-light">
-                        <span class="skills">Website is Under Construction!</span>
-                    </div>
-                </div>
+<body>
+    <div id="container">
+        <div id="left" name="left">
+            <div style="width:100%;text-align:center">
+                <h4>Algorithm: Text Mining</h4>
             </div>
         </div>
-    </header>
-
-    <!-- Footer -->
-    <footer id="footer" class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Address</h3>
-                        <p>625 W 1st Street<br>Tempe, AZ 85281</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Social Networks</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a target="_blank" href="http://www.facebook.com/giribhai94" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="http://www.google.com/+GirishR94" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="http://linkedin.com/in/girishraman" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Contacting Girish</h3>
-                        <p>I can be reached by Email any time of the day.<br><a href="mailto:girish.raman@asu.edu">girish.raman@asu.edu</a></p>
-                    </div>
-                </div>
-                Also check me out on Github &nbsp;&nbsp;<a target="_blank" href="http://github.com/RGirish" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a><br><br><br>
+        <div id="right" name="right">
+            <div style="width:100%;text-align:center">
+                <h4>Algorithm: Custom Algorithm</h4>
             </div>
         </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Created from Freelance by <a target="_blank" href="http://startbootstrap.com">Start Bootstrap</a>.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll visible-xs visible-sm">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
     </div>
+    <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+    <script>
+    var width = 550,
+        height = 550,
+        outerRadius = Math.min(width, height) / 2 - 110,
+        innerRadius = outerRadius - 24;
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    var formatPercent = d3.format(".1%");
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    var arc = d3.svg.arc()
+        .innerRadius(innerRadius)
+        .outerRadius(outerRadius);
 
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
+    var layout = d3.layout.chord()
+        .padding(0.028)
+        .sortSubgroups(d3.descending)
+        .sortChords(d3.ascending);
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    var path = d3.svg.chord()
+        .radius(innerRadius);
 
-    <!-- Custom Theme JavaScript -->
-    <script src="js/freelancer.js"></script>
+    var svg = d3.select("#left").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("id", "circle")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
+    svg.append("circle")
+        .attr("r", outerRadius);
+
+    var svg2 = d3.select("#right").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("id", "circle")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    svg2.append("circle")
+        .attr("r", outerRadius);
+
+    d3.csv("ChordDiagram-Data/top50.csv", function(tags) {
+        d3.json("ChordDiagram-Data/1_top50.json", function(matrix) {
+
+            // Compute the chord layout.
+            layout.matrix(matrix);
+
+            // Add a group per neighborhood.
+            var group = svg.selectAll(".group")
+                .data(layout.groups)
+                .enter().append("g")
+                .attr("class", "group")
+                .on("mouseover", mouseover);
+
+            // Add the group arc.
+            var groupPath = group.append("path")
+                .attr("id", function(d, i) {
+                    return "group" + i;
+                })
+                .attr("d", arc)
+                .style("fill", function(d, i) {
+                    return tags[i].color;
+                });
+
+            group.append("text")
+                .each(function(d, i) {
+                    d.angle = (d.startAngle + d.endAngle) / 2;
+                })
+                .style("font-size", "8px")
+                .attr("dy", ".35em")
+                .attr("transform", function(d) {
+                    return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius + 26) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");
+                })
+                .style("text-anchor", function(d) {
+                    return d.angle > Math.PI ? "end" : null;
+                })
+                .text(function(d, i) {
+                    return tags[i].name;
+                });
+
+            // Add the chords.
+            var chord = svg.selectAll(".chord")
+                .data(layout.chords)
+                .enter().append("path")
+                .attr("class", "chord")
+                .style("fill", function(d) {
+                    return tags[d.source.index].color;
+                })
+                .attr("d", path);
+
+            function mouseover(d, i) {
+                chord.classed("fade", function(p) {
+                    return p.source.index != i && p.target.index != i;
+                });
+            }
+
+
+            // The one in the right side
+            d3.csv("ChordDiagram-Data/top50.csv", function(tags) {
+                d3.json("ChordDiagram-Data/2_top50.json", function(matrix) {
+
+                    // Compute the chord layout.
+                    layout.matrix(matrix);
+
+                    // Add a group per neighborhood.
+                    var group = svg2.selectAll(".group")
+                        .data(layout.groups)
+                        .enter().append("g")
+                        .attr("class", "group")
+                        .on("mouseover", mouseover);
+
+                    // Add the group arc.
+                    var groupPath = group.append("path")
+                        .attr("id", function(d, i) {
+                            return "group" + i;
+                        })
+                        .attr("d", arc)
+                        .style("fill", function(d, i) {
+                            return tags[i].color;
+                        });
+
+                    group.append("text")
+                        .each(function(d) {
+                            d.angle = (d.startAngle + d.endAngle) / 2;
+                        })
+                        .style("font-size", "8px")
+                        .attr("dy", ".35em")
+                        .attr("transform", function(d) {
+                            return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius + 26) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");
+                        })
+                        .style("text-anchor", function(d) {
+                            return d.angle > Math.PI ? "end" : null;
+                        })
+                        .text(function(d, i) {
+                            return tags[i].name;
+                        });
+
+                    // Add the chords.
+                    var chord = svg2.selectAll(".chord")
+                        .data(layout.chords)
+                        .enter().append("path")
+                        .attr("class", "chord")
+                        .style("fill", function(d) {
+                            return tags[d.source.index].color;
+                        })
+                        .attr("d", path);
+
+                    function mouseover(d, i) {
+                        chord.classed("fade", function(p) {
+                            return p.source.index != i && p.target.index != i;
+                        });
+                    }
+                });
+            });
+        });
+    });
+    </script>
 </body>
-
-</html>
