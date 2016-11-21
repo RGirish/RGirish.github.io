@@ -73,11 +73,7 @@ width: 180px;
 font-size: small;
 margin-bottom: 2em;
 }
- 
-body > p, li > p {
-line-height: 1.5em;
-}
- 
+
 body > p {
 width: 720px;
 }
@@ -91,10 +87,6 @@ display: block;
 font-style: oblique;
 }
  
-li {
-width: 680px;
-}
- 
 a {
 color: steelblue;
 }
@@ -105,14 +97,6 @@ text-decoration: none;
  
 pre, code, textarea {
 font-family: "Menlo", monospace;
-}
- 
-code {
-line-height: 1em;
-}
- 
-textarea {
-font-size: 100%;
 }
  
 body > pre {
@@ -148,34 +132,7 @@ color: #31a354;
 .javascript .special {
 color: #e6550d;
 }
- 
+
 svg {
 font: 10px sans-serif;
-}
- 
-.axis path, .axis line {
-fill: none;
-stroke: #000;
-shape-rendering: crispEdges;
-}
- 
-sup, sub {
-line-height: 0;
-}
- 
-q:before {
-content: "â€œ";
-}
- 
-q:after {
-content: "â€";
-}
- 
-blockquote:before {
-position: absolute;
-left: 2em;
-}
- 
-blockquote:after {
-position: absolute;
 }

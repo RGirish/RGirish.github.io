@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<HTML>
 
 <head>
     <meta charset="utf-8">
     <title>Chord Diagram</title>
+    <!-- For the Chord Diagram -->
     <style>
     @import url(style.css);
     #circle circle {
@@ -41,21 +42,114 @@
         background: #f7f7f7
     }
     </style>
+    <!-- For the tabs -->
+    <style TYPE="text/css">
+    /* Style the list */
+    
+    ul.tab {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+    /* Float the list items side by side */
+    
+    ul.tab li {
+        float: left;
+    }
+    /* Style the links inside the list items */
+    
+    ul.tab li a {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+    /* Change background color of links on hover */
+    
+    ul.tab li a:hover {
+        background-color: #ddd;
+    }
+    /* Create an active/current tablink class */
+    
+    ul.tab li a:focus,
+    .active {
+        background-color: #ccc;
+    }
+    /* Style the tab content */
+    
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border-top: none;
+    }
+    </style>
+    <!-- For the Graph Diagram -->
+    <style>
+    .link {
+        stroke: #000;
+    }
+    
+    .node {
+        cursor: move;
+        fill: #ccc;
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+    </style>
 </head>
 
 <body>
-    <div id="container">
-        <div id="left" name="left">
-            <div style="width:100%;text-align:center">
-                <h4>Algorithm: Text Mining</h4>
+    <ul class="tab">
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openViz(event, 'Graph')">Graph</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openViz(event, 'Chord')">Chord</a></li>
+    </ul>
+    <div id="Graph" class="tabcontent">
+        <h3>Graph</h3>
+    </div>
+    <div id="Chord" class="tabcontent">
+        <div id="container">
+            <div id="left" name="left">
+                <div style="width:100%;text-align:center">
+                    <h4>Algorithm: Text Mining</h4>
+                </div>
             </div>
-        </div>
-        <div id="right" name="right">
-            <div style="width:100%;text-align:center">
-                <h4>Algorithm: Custom Algorithm</h4>
+            <div id="right" name="right">
+                <div style="width:100%;text-align:center">
+                    <h4>Algorithm: Custom Algorithm</h4>
+                </div>
             </div>
         </div>
     </div>
+    <!-- For the tabs -->
+    <script type="text/javascript">
+    function openViz(evt, vizName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the link that opened the tab
+        document.getElementById(vizName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    </script>
+    <!-- For the Chord Diagram -->
     <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
     <script>
     var width = 550,
@@ -214,3 +308,5 @@
     });
     </script>
 </body>
+
+</HTML>
