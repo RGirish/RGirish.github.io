@@ -91,26 +91,46 @@
     </style>
     <!-- For the Graph Diagram -->
     <style>
-    .link {
-        stroke: #000;
+    .container_graph {
+        float: left;
     }
     
-    .node {
-        cursor: move;
-        fill: #ccc;
-        stroke: #000;
-        stroke-width: 1.5px;
+    #left_graph {
+        float: left;
+        width: 550px;
+        height: 550px;
+        background: #f7f7f7
+    }
+    
+    #right_graph {
+        float: right;
+        width: 550px;
+        height: 550px;
+        background: #f7f7f7
     }
     </style>
 </head>
 
-<body>
+<body onload="graphs()">
     <ul class="tab">
         <li><a href="javascript:void(0)" class="tablinks" onclick="openViz(event, 'Graph')">Graph</a></li>
         <li><a href="javascript:void(0)" class="tablinks" onclick="openViz(event, 'Chord')">Chord</a></li>
     </ul>
     <div id="Graph" class="tabcontent">
-        <h3>Graph</h3>
+        <div id="container">
+            <div id="left_graph" name="left_graph">
+                <div style="width:100%;text-align:center">
+                    <h4>Algorithm: Text Mining</h4>
+                </div>
+            </div>
+            <div id="right_graph" name="right_graph">
+                <div style="width:100%;text-align:center">
+                    <h4>Algorithm: Custom Algorithm</h4>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="container_graph" id="svg1">
+        </div> -->
     </div>
     <div id="Chord" class="tabcontent">
         <div id="container">
@@ -150,7 +170,7 @@
     }
     </script>
     <!-- For the Chord Diagram -->
-    <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
     <script>
     var width = 550,
         height = 550,
@@ -306,6 +326,354 @@
             });
         });
     });
+    </script>
+    <!-- For the Graph Diagram -->
+    <script>
+    function gew(attribute, val) {
+
+        var matchingElements = [];
+        var allElements = document.getElementsByTagName('*');
+        for (var i = 0, n = allElements.length; i < n; i++) {
+            if (allElements[i].getAttribute(attribute) !== null) {
+                if (allElements[i].getAttribute(attribute) == val) {
+                    matchingElements.push(allElements[i]);
+                }
+            }
+        }
+        return matchingElements;
+    }
+
+    function graphs() {
+        var data;
+        d3.json("GraphDiagram-Data/1_top_50.json", function(data) {
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var c10 = d3.scale.category10();
+            var svg = d3.select("#left_graph")
+                .append("svg")
+                .attr("width", "600")
+                .attr("height", h)
+                .attr("transform", "translate(10,10)");
+
+            var drag = d3.behavior.drag()
+                .on("drag", function(d, i) {
+                    d.x += d3.event.dx
+                    d.y += d3.event.dy
+                    d3.select(this).attr("cx", d.x).attr("cy", d.y);
+                    tn = this.getAttribute("nname");
+                    d3.select("#" + tn).attr("x", d.x).attr("y", d.y);
+                    links.each(function(l, li) {
+                        if (l.source == i) {
+                            d3.select(this).attr("x1", d.x).attr("y1", d.y);
+                        } else if (l.target == i) {
+                            d3.select(this).attr("x2", d.x).attr("y2", d.y);
+                        }
+                    });
+                });
+
+            var links = svg.selectAll("link")
+                .data(data.links)
+                .enter()
+                .append("line")
+                .attr("class", "link")
+                .attr("x1", function(l) {
+                    var sourceNode = data.nodes.filter(function(d, i) {
+                        return i == l.source
+                    })[0];
+                    d3.select(this).attr("y1", sourceNode.y);
+
+                    return sourceNode.x
+                })
+                .attr("x2", function(l) {
+                    var targetNode = data.nodes.filter(function(d, i) {
+                        return i == l.target
+                    })[0];
+                    d3.select(this).attr("y2", targetNode.y);
+                    return targetNode.x
+                })
+                .attr("source_node", function(l) {
+                    var sourceNode = data.nodes.filter(function(d, i) {
+                        return i == l.source
+                    })[0];
+                    return sourceNode.name;
+                })
+                .attr("target_node", function(l) {
+                    var targetNode = data.nodes.filter(function(d, i) {
+                        return i == l.target
+                    })[0];
+                    return targetNode.name;
+                })
+                .attr("stroke", "grey")
+                .attr("opacity", "0.5")
+                .attr("stroke-width", function(d) {
+                    return d.value / 200;
+                });
+            var c = 5;
+            var elem = svg.selectAll("body")
+                .data(data.nodes)
+
+            elemEnter = elem.enter()
+                .append("g")
+
+            var nodes = svg.selectAll("node")
+                .data(data.nodes)
+                .enter()
+                .append("circle")
+                .attr("class", "node")
+                .attr("cx", function(d) {
+
+
+                    return d.x;
+
+                })
+                .attr("cy", function(d) {
+
+                    return d.y;
+                })
+                .attr("fill-opacity", 0.5)
+                .attr("r", 15)
+                .attr("nname", function(d) {
+                    return d.name;
+                })
+                .attr("fill", function(d, i) {
+                    return c10(i);
+                })
+                .on("mouseover", function() {
+                    var sn = gew("source_node", this.getAttribute("nname"));
+                    var tn = gew("target_node", this.getAttribute("nname"));
+                    var i = 0
+                    for (i = 0; i < sn.length; i++) {
+                        sn[i].setAttribute("stroke", "red");
+                    }
+                    var i = 0
+                    for (i = 0; i < tn.length; i++) {
+                        tn[i].setAttribute("stroke", "red");
+                    }
+                    var pc = this.getAttribute("nname");
+
+                    var list1 = document.getElementsByTagName("line");
+                    for (var j = 0; j < list1.length; j++) {
+                        if (list1[j].getAttribute("source_node") != pc && list1[j].getAttribute("target_node") != pc) {
+
+                            list1[j].setAttribute("opacity", "0");
+                        }
+
+                    }
+
+                })
+                .on("mouseout", function() {
+                    var sn = gew("source_node", this.getAttribute("nname"));
+                    var tn = gew("target_node", this.getAttribute("nname"));
+
+
+
+                    var i = 0
+                    for (i = 0; i < sn.length; i++) {
+                        sn[i].setAttribute("stroke", "grey");
+                    }
+                    var i = 0
+                    for (i = 0; i < tn.length; i++) {
+                        tn[i].setAttribute("stroke", "grey");
+                    }
+                    var pc = this.getAttribute("nname");
+                    var list1 = document.getElementsByTagName("line");
+                    for (var j = 0; j < list1.length; j++) {
+                        if (list1[j].getAttribute("source_node") != pc && list1[j].getAttribute("target_node") != pc) {
+                            list1[j].setAttribute("opacity", "0.5");
+                        }
+
+                    }
+
+                })
+                .call(drag);
+
+            elemEnter.append("text")
+                .attr("dx", function(d) {
+                    return -20
+                })
+                .text(function(d) {
+                    return d.name
+                })
+                .attr("font-size", "10px")
+                .attr("x", function(d) {
+                    return d.x;
+                })
+                .attr("y", function(d) {
+                    return d.y;
+                })
+                .attr("id", function(d) {
+                    return d.name;
+                });
+
+        });
+        d3.json("GraphDiagram-Data/2_top_50.json", function(data) {
+            console.log(data);
+
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            var c10 = d3.scale.category10();
+            var svg = d3.select("#right_graph")
+                .append("svg")
+                .attr("width", "600")
+                .attr("height", h)
+                .attr("transform", "translate(50,10)");
+
+            var drag = d3.behavior.drag()
+                .on("drag", function(d, i) {
+                    d.x += d3.event.dx
+                    d.y += d3.event.dy
+                    d3.select(this).attr("cx", d.x).attr("cy", d.y);
+                    tn = this.getAttribute("nname");
+                    d3.select("#" + tn).attr("x", d.x).attr("y", d.y);
+                    links.each(function(l, li) {
+                        if (l.source == i) {
+                            d3.select(this).attr("x1", d.x).attr("y1", d.y);
+                        } else if (l.target == i) {
+                            d3.select(this).attr("x2", d.x).attr("y2", d.y);
+                        }
+                    });
+                });
+
+            var links = svg.selectAll("link")
+                .data(data.links)
+                .enter()
+                .append("line")
+                .attr("class", "link")
+                .attr("x1", function(l) {
+                    var sourceNode = data.nodes.filter(function(d, i) {
+                        return i == l.source
+                    })[0];
+                    d3.select(this).attr("y1", sourceNode.y);
+
+                    return sourceNode.x
+                })
+                .attr("x2", function(l) {
+                    var targetNode = data.nodes.filter(function(d, i) {
+                        return i == l.target
+                    })[0];
+                    d3.select(this).attr("y2", targetNode.y);
+                    return targetNode.x
+                })
+                .attr("source_node", function(l) {
+                    var sourceNode = data.nodes.filter(function(d, i) {
+                        return i == l.source
+                    })[0];
+                    return sourceNode.name;
+                })
+                .attr("target_node", function(l) {
+                    var targetNode = data.nodes.filter(function(d, i) {
+                        return i == l.target
+                    })[0];
+                    return targetNode.name;
+                })
+                .attr("stroke", "grey")
+                .attr("opacity", "0.5")
+                .attr("stroke-width", function(d) {
+                    return d.value / 200;
+                });
+            var c = 5;
+            var elem = svg.selectAll("body")
+                .data(data.nodes)
+
+            elemEnter = elem.enter()
+                .append("g")
+
+            var nodes = svg.selectAll("node")
+                .data(data.nodes)
+                .enter()
+                .append("circle")
+                .attr("class", "node")
+                .attr("cx", function(d) {
+
+
+                    return d.x;
+
+                })
+                .attr("cy", function(d) {
+
+                    return d.y;
+                })
+                .attr("fill-opacity", 0.5)
+                .attr("r", 15)
+                .attr("nname", function(d) {
+                    return d.name;
+                })
+                .attr("fill", function(d, i) {
+                    return c10(i);
+                })
+                .on("mouseover", function() {
+                    var sn = gew("source_node", this.getAttribute("nname"));
+                    var tn = gew("target_node", this.getAttribute("nname"));
+                    var i = 0
+                    for (i = 0; i < sn.length; i++) {
+                        sn[i].setAttribute("stroke", "red");
+                    }
+                    var i = 0
+                    for (i = 0; i < tn.length; i++) {
+                        tn[i].setAttribute("stroke", "red");
+                    }
+                    var pc = this.getAttribute("nname");
+
+                    var list1 = document.getElementsByTagName("line");
+                    for (var j = 0; j < list1.length; j++) {
+                        if (list1[j].getAttribute("source_node") != pc && list1[j].getAttribute("target_node") != pc) {
+
+                            list1[j].setAttribute("opacity", "0");
+                        }
+
+                    }
+
+                })
+                .on("mouseout", function() {
+                    var sn = gew("source_node", this.getAttribute("nname"));
+                    var tn = gew("target_node", this.getAttribute("nname"));
+
+
+
+                    var i = 0
+                    for (i = 0; i < sn.length; i++) {
+                        sn[i].setAttribute("stroke", "grey");
+                    }
+                    var i = 0
+                    for (i = 0; i < tn.length; i++) {
+                        tn[i].setAttribute("stroke", "grey");
+                    }
+                    var pc = this.getAttribute("nname");
+                    var list1 = document.getElementsByTagName("line");
+                    for (var j = 0; j < list1.length; j++) {
+                        if (list1[j].getAttribute("source_node") != pc && list1[j].getAttribute("target_node") != pc) {
+                            list1[j].setAttribute("opacity", "0.5");
+                        }
+
+                    }
+
+                })
+                .call(drag);
+
+            elemEnter.append("text")
+                .attr("dx", function(d) {
+                    return -20
+                })
+                .text(function(d) {
+                    return d.name
+                })
+                .attr("font-size", "10px")
+                .attr("x", function(d) {
+                    return d.x;
+                })
+                .attr("y", function(d) {
+                    return d.y;
+                })
+                .attr("id", function(d) {
+                    return d.name;
+                });
+
+        });
+
+
+
+    }
     </script>
 </body>
 
