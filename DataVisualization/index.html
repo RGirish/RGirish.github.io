@@ -212,7 +212,7 @@
         .attr("r", outerRadius);
 
     d3.csv("ChordDiagram-Data/top50.csv", function(tags) {
-        d3.json("ChordDiagram-Data/1_top50.json", function(matrix) {
+        d3.json("ChordDiagram-Data/text_mining.json", function(matrix) {
 
             // Compute the chord layout.
             layout.matrix(matrix);
@@ -269,7 +269,7 @@
 
             // The one in the right side
             d3.csv("ChordDiagram-Data/top50.csv", function(tags) {
-                d3.json("ChordDiagram-Data/2_top50.json", function(matrix) {
+                d3.json("ChordDiagram-Data/custom_algorithm.json", function(matrix) {
 
                     // Compute the chord layout.
                     layout.matrix(matrix);
