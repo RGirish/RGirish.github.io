@@ -345,7 +345,7 @@
 
     function graphs() {
         var data;
-        d3.json("GraphDiagram-Data/1_top_50.json", function(data) {
+        d3.json("GraphDiagram-Data/text_mining.json", function(data) {
             var w = window.innerWidth;
             var h = window.innerHeight;
             var c10 = d3.scale.category10();
@@ -406,7 +406,7 @@
                 .attr("stroke", "grey")
                 .attr("opacity", "0.5")
                 .attr("stroke-width", function(d) {
-                    return d.value / 200;
+                    return d.value / 1200;
                 });
             var c = 5;
             var elem = svg.selectAll("body")
@@ -421,13 +421,9 @@
                 .append("circle")
                 .attr("class", "node")
                 .attr("cx", function(d) {
-
-
                     return d.x;
-
                 })
                 .attr("cy", function(d) {
-
                     return d.y;
                 })
                 .attr("fill-opacity", 0.5)
@@ -506,7 +502,7 @@
                 });
 
         });
-        d3.json("GraphDiagram-Data/2_top_50.json", function(data) {
+        d3.json("GraphDiagram-Data/custom_algorithm.json", function(data) {
             console.log(data);
 
             var w = window.innerWidth;
@@ -525,6 +521,7 @@
                     d.y += d3.event.dy
                     d3.select(this).attr("cx", d.x).attr("cy", d.y);
                     tn = this.getAttribute("nname");
+                    tn = "viz"+tn;
                     d3.select("#" + tn).attr("x", d.x).attr("y", d.y);
                     links.each(function(l, li) {
                         if (l.source == i) {
@@ -666,12 +663,10 @@
                     return d.y;
                 })
                 .attr("id", function(d) {
-                    return d.name;
+                    var s="viz"+d.name
+                    return s;
                 });
-
         });
-
-
 
     }
     </script>
