@@ -439,7 +439,7 @@
                     return d.name;
                 })
                 .attr("fill", function(d, i) {
-                    return c10(i);
+                    return c10(d.group);
                 })
                 .on("mouseover", function() {
                     var sn = gew("source_node", this.getAttribute("nname"));
@@ -597,7 +597,7 @@
                     return d.name;
                 })
                 .attr("fill", function(d, i) {
-                    return c10(i);
+                    return c10(d.group);
                 })
                 .on("mouseover", function() {
                     var sn = gew("source_node", this.getAttribute("nname"));
