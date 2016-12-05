@@ -1,51 +1,51 @@
 name,color
-android,#571D8E
-arrays,#ADE9A7
-regex,#AD343C
-multithreading,#D69CA1
-swing,#55E15E
-eclipse,#2A74C6
-android eclipse,#2CD379
-string,#1F186D
-arraylist,#B08EC1
-generics,#52B23B
-hibernate,#C652CA
-spring,#084076
-spring spring-mvc,#4518EA
-maven,#8C815B
-android xml,#322CE5
-jsp servlets,#56577F
-json,#BC8691
-mysql,#0287EC
-android android-fragments,#2AC97D
-recursion,#099BEB
-hibernate jpa,#34819C
-inheritance,#CB089D
-regex string,#C5E8B7
-javafx,#39A3FD
-collections,#069833
-spring hibernate,#98E8AF
-xml,#EBBC13
-hashmap,#A36C75
-android sqlite,#E4891D
-algorithm,#13F577
-servlets,#92127A
-reflection,#5D906C
-enums,#66B80B
-jsp,#4114EE
-android json,#1BAB4E
-android android-asynctask,#225BE6
-json jackson,#A66316
-if-statement,#5E8D4A
-android libgdx,#30A955
-sockets,#42171B
-loops,#55DD5D
-swing jtable,#E88C79
-oop,#4FDE7B
-android multithreading,#A6A3D4
-netbeans,#A35356
-selenium selenium-webdriver,#6B8AD9
-date,#29A74B
-exception,#3864E1
-java-util-scanner,#4927AD
-arrays string,#B2241D
+android,#1f77b4
+arrays,#1f77b4
+regex,#1f77b4
+multithreading,#1f77b4
+swing,#1f77b4
+eclipse,#1f77b4
+android eclipse,#1f77b4
+string,#1f77b4
+arraylist,#1f77b4
+generics,#1f77b4
+hibernate,#ff7f0e
+spring,#ff7f0e
+spring spring-mvc,#ff7f0e
+maven,#ff7f0e
+android xml,#ff7f0e
+jsp servlets,#ff7f0e
+json,#ff7f0e
+mysql,#ff7f0e
+android android-fragments,#ff7f0e
+recursion,#ff7f0e
+hibernate jpa,#2ca02c
+inheritance,#2ca02c
+regex string,#2ca02c
+javafx,#2ca02c
+collections,#2ca02c
+spring hibernate,#2ca02c
+xml,#2ca02c
+hashmap,#2ca02c
+android sqlite,#2ca02c
+algorithm,#2ca02c
+servlets,#d62728
+reflection,#d62728
+enums,#d62728
+jsp,#d62728
+android json,#d62728
+android android-asynctask,#d62728
+json jackson,#d62728
+if-statement,#d62728
+android libgdx,#d62728
+sockets,#d62728
+loops,#9467bd
+swing jtable,#9467bd
+oop,#9467bd
+android multithreading,#9467bd
+netbeans,#9467bd
+selenium selenium-webdriver,#9467bd
+date,#9467bd
+exception,#9467bd
+java-util-scanner,#9467bd
+arrays string,#9467bd
