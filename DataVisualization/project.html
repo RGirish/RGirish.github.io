@@ -111,10 +111,13 @@
     </style>
 </head>
 
-<body onload="graphs()">
+<body>
+    <div style="width:100%;text-align:center">
+        <h2>A Visual Comparison Tool for Correlation Algorithms</h2>
+    </div>
     <ul class="tab">
-        <li><a href="javascript:void(0)" class="tablinks" onclick="openViz(event, 'Graph')">Graph</a></li>
-        <li><a href="javascript:void(0)" class="tablinks" onclick="openViz(event, 'Chord')">Chord</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openViz('Graph')">Graph</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openViz('Chord')">Chord</a></li>
     </ul>
     <div id="Graph" class="tabcontent">
         <div id="container">
@@ -129,8 +132,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="container_graph" id="svg1">
-        </div> -->
     </div>
     <div id="Chord" class="tabcontent">
         <div id="container">
@@ -146,9 +147,16 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        graphs();
+        openViz('Chord');
+    });
+    </script>
     <!-- For the tabs -->
     <script type="text/javascript">
-    function openViz(evt, vizName) {
+    function openViz(vizName) {
         // Declare all variables
         var i, tabcontent, tablinks;
 
@@ -166,7 +174,6 @@
 
         // Show the current tab, and add an "active" class to the link that opened the tab
         document.getElementById(vizName).style.display = "block";
-        evt.currentTarget.className += " active";
     }
     </script>
     <!-- For the Chord Diagram -->
@@ -521,7 +528,7 @@
                     d.y += d3.event.dy
                     d3.select(this).attr("cx", d.x).attr("cy", d.y);
                     tn = this.getAttribute("nname");
-                    tn = "viz"+tn;
+                    tn = "viz" + tn;
                     d3.select("#" + tn).attr("x", d.x).attr("y", d.y);
                     links.each(function(l, li) {
                         if (l.source == i) {
@@ -663,7 +670,7 @@
                     return d.y;
                 })
                 .attr("id", function(d) {
-                    var s="viz"+d.name
+                    var s = "viz" + d.name
                     return s;
                 });
         });
